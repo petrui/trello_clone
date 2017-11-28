@@ -1,11 +1,8 @@
 require 'rails_helper'
 
 RSpec.shared_examples 'a 404 response' do |opts = {}|
-  let(:extra_params) { {} }
-
   context 'when the item does not exist' do
-    let(:params) { { id: 0 }.merge(extra_params) }
-    before { send(opts[:method], opts[:action], params: params) }
+    before { send(opts[:method], opts[:action], params: params_404) }
 
     it 'returns status code 404' do
       expect(response).to have_http_status(404)
@@ -19,7 +16,7 @@ end
 
 RSpec.shared_examples 'an api controller' do
   describe 'GET #index' do
-    before { get :index }
+    before { get :index, params: params.except(:id) }
 
     it 'returns status code 200' do
       expect(response).to have_http_status(200)
@@ -33,7 +30,7 @@ RSpec.shared_examples 'an api controller' do
 
   describe 'GET #show' do
     context 'when the item exists' do
-      before { get :show, params: { id: item.id } }
+      before { get :show, params: params }
 
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
@@ -43,7 +40,9 @@ RSpec.shared_examples 'an api controller' do
         expect(json_response).to eq(serialized_item)
       end
     end
-    it_behaves_like 'a 404 response', method: :get, action: :show
+    it_behaves_like 'a 404 response', method: :get, action: :show do
+      let(:params_404) { params.merge(id: 0) }
+    end
   end
 
   describe 'POST #create' do
@@ -73,23 +72,25 @@ RSpec.shared_examples 'an api controller' do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      before { put :update, params: { id: item.id }.merge(valid_attributes) }
+      before { put :update, params: params.merge(valid_attributes) }
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
 
       it 'updates the item' do
-        new_value = valid_attributes.values[0].values[0]
+        new_value = valid_attributes.values.last.values[0]
         item.reload
         expect(item.title).to match(new_value)
       end
     end
-    it_behaves_like 'a 404 response', method: :put, action: :update
+    it_behaves_like 'a 404 response', method: :put, action: :update do
+      let(:params_404) { params.merge(id: 0) }
+    end
   end
 
   describe 'DELETE #destroy' do
     context 'with valid params' do
-      before { delete :destroy, params: { id: item.id } }
+      before { delete :destroy, params: params }
 
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
@@ -99,6 +100,8 @@ RSpec.shared_examples 'an api controller' do
         expect { item.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
-    it_behaves_like 'a 404 response', method: :delete, action: :destroy
+    it_behaves_like 'a 404 response', method: :delete, action: :destroy do
+      let(:params_404) { params.merge(id: 0) }
+    end
   end
 end
