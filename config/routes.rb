@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :boards do
-        resources :columns
+        resources :columns do
+          resources :tasks
+        end
       end
     end
   end
