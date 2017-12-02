@@ -15,6 +15,6 @@
 /log/*
 /tmp/*
 /node_modules/
-
+/app-js/dist/
 .byebug_history
 .tags
