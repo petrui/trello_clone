@@ -38,6 +38,10 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
   ],
 
+  externals: {
+    Config: JSON.stringify({ apiUrl: 'http://localhost:3000/api/v1' }),
+  },
+
   devServer: {
     clientLogLevel: 'none',
     compress: true,
