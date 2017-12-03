@@ -1,24 +1,13 @@
-# README
+## Trello Clone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### Dependencies
+* SQLite
 
-Things you may want to cover:
+#### Installation steps
+* `bundle install`
+* `yarn install`
+* `rails db:setup`
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Starting the app
+* `foreman start` # starts two servers (ports 3000 & 3001)
+* visit http://localhost:3001

@@ -1,13 +1,13 @@
 require 'faker'
 require 'factory_bot_rails'
 
-boards = Board.create([{ title: Faker::Beer.unique.name },
-                       { title: Faker::Beer.unique.name }])
+boards = Board.create([{ title: 'My Awesome Project' },
+                       { title: 'MyTime' }])
 
 boards.each do |board|
-  4.times do
+  %w[Backlog In\ Progress Done].each do |title|
     column = Column.create(board: board,
-                           title: Faker::Color.unique.color_name.capitalize)
-    FactoryBot.create_list(:task, rand(4..7), column: column)
+                           title: title)
+    FactoryBot.create_list(:task, rand(1..4), column: column)
   end
 end
