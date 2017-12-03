@@ -24,9 +24,13 @@
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
     "webpack": "^3.9.1",
-    "webpack-dev-server": "^2.9.5"
+    "webpack-dev-server": "^2.9.5",
+    "webpack-preset-babel-stage-2": "^0.2.0"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
+    "es6-promise": "^4.1.1",
+    "isomorphic-fetch": "^2.2.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",

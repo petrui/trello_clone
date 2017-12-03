@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/index';
-import Layout from './components/layout';
+import MainLayout from './components/main_layout';
 
 const store = createStore(
   rootReducer,
@@ -14,10 +14,10 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <Layout />
-    </Provider>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <MainLayout />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('trello-app'),
 );

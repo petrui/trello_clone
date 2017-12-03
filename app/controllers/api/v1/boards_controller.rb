@@ -6,7 +6,7 @@ class Api::V1::BoardsController < ApplicationController
   end
 
   def show
-    render json: @board
+    render json: @board, include: %w[columns columns.tasks]
   end
 
   def create

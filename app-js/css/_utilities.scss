@@ -1,0 +1,37 @@
+.clickable {
+  cursor: pointer;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mt50 {
+  margin-top: 50px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.white-bg {
+  background-color: white;
+}
+
+.errors {
+  color: #a94442;
+
+  input,
+  textarea {
+    border-color: #a94442 !important;
+  }
+}
+
+.red {
+  color: #a94442;
+}
+
+.small-button {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
