@@ -1,5 +1,5 @@
 import Config from 'Config';
-import { getWithParams, postWithParams, deleteWithUrl } from '../common/async';
+import { postWithParams, putWithParams } from '../common/async';
 import { dispatchSetError } from './notifications';
 import { fetchBoard } from './boards';
 
@@ -10,6 +10,16 @@ export function saveTask(boardId, columnId, data, redirect) {
         dispatch(fetchBoard(boardId));
         redirect();
       })
+      .catch((error) => {
+        console.log(['errr', error]);
+        error.text().then(msg => dispatchSetError(dispatch, JSON.parse(msg)));
+      });
+  };
+}
+
+export function updateTaskPosition(path, position) {
+  return (dispatch) => {
+    putWithParams(Config.apiUrl + path, { task: { sequence_position: position } })
       .catch((error) => {
         console.log(['errr', error]);
         error.text().then(msg => dispatchSetError(dispatch, JSON.parse(msg)));

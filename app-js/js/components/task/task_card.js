@@ -3,13 +3,13 @@ import DeleteButton from '../shared/delete_button';
 
 export default class TaskCard extends Component {
   render() {
-    const { boardId, columnId, task } = this.props;
+    const { boardId, columnId, task, pos } = this.props;
     const taskPath = `/boards/${boardId}/columns/${columnId}/tasks/${task.id}`;
 
     return (
-      <div className="card task-card white-bg">
+      <div className="card task-card white-bg" data-pos={pos} data-path={taskPath}>
         <header>
-          <h4 className="is-marginless">&raquo; {task.title}</h4>
+          <h4 className="is-marginless dragable">&#8645; {task.title}</h4>
           <hr />
         </header>
         <p>{task.description}</p>

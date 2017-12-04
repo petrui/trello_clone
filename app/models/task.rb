@@ -4,5 +4,6 @@ class Task < ApplicationRecord
 
   validates_presence_of :title, :description
 
-  ranks :sequence
+  ranks :sequence, with_same: :column_id
+  default_scope { rank(:sequence) }
 end

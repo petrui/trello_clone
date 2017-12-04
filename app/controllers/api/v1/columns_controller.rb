@@ -34,6 +34,6 @@ class Api::V1::ColumnsController < ApplicationController
   end
 
   def column_params
-    params.require(:column).permit(:title, :sequence)
+    params.require(:column).permit(:title, :sequence_position)
   end
 end

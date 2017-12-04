@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import TaskCard from '../task/task_card';
+import TaskList from '../task/task_list';
 import DeleteButton from '../shared/delete_button';
+import Dragula from 'react-dragula';
 
 export default class ColumnCard extends Component {
   addNewTaskCard(column) {
@@ -11,19 +12,6 @@ export default class ColumnCard extends Component {
           Add a new task...
         </Link>
       </div>
-    );
-  }
-
-  taskList(column) {
-    return (
-      column.tasks.map(task => (
-        <TaskCard
-          columnId={column.id}
-          boardId={column.board_id}
-          task={task}
-          key={task.id}
-        />
-      ))
     );
   }
 
@@ -39,7 +27,8 @@ export default class ColumnCard extends Component {
             <DeleteButton path={columnPath} boardId={column.board_id} />
           </div>
         </header>
-        {this.taskList(column)}
+
+        <TaskList column={column} />
         {this.addNewTaskCard(column)}
       </div>
     );
