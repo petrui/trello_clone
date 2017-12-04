@@ -9,7 +9,7 @@ export default class TaskCard extends Component {
     return (
       <div className="card task-card white-bg" data-pos={pos} data-path={taskPath}>
         <header>
-          <h4 className="is-marginless dragable">&#8645; {task.title}</h4>
+          <h4 className="is-marginless js-drag-task draggable">&#8645; {task.title}</h4>
           <hr />
         </header>
         <p>{task.description}</p>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchBoard } from '../../actions/boards';
-import ColumnCard from '../column/column_card';
+import ColumnList from '../column/column_list';
 
 class ShowBoard extends Component {
   constructor(params) {
@@ -21,12 +21,6 @@ class ShowBoard extends Component {
     this.props.fetchBoard(nextProps.match.params.id);
   }
 
-  columns() {
-    if (this.props.board.columns) {
-      return this.props.board.columns.map(col => <ColumnCard column={col} key={col.id} />);
-    }
-  }
-
   render() {
     return (
       <div>
@@ -39,7 +33,7 @@ class ShowBoard extends Component {
           </div>
         </div>
 
-        <div className="row">{this.columns()}</div>
+        <ColumnList columns={this.props.board.columns} />
       </div>
     );
   }

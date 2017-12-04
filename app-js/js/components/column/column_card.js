@@ -20,10 +20,10 @@ export default class ColumnCard extends Component {
     const columnPath = `/boards/${column.board_id}/columns/${column.id}`;
 
     return (
-      <div className="col-3 card board">
-        <header className="clearfix  is-full-width">
-          <h5 className="pull-left">&#9776; {column.title}</h5>
-          <div className="pull-right">
+      <div className="col-3 card board" data-pos={this.props.pos} data-path={columnPath}>
+        <header className="row">
+          <h5 className="col is-full-width js-drag-column draggable">&#9776; {column.title}</h5>
+          <div className="col-2 is-text-right">
             <DeleteButton path={columnPath} boardId={column.board_id} />
           </div>
         </header>

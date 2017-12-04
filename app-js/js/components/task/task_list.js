@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
-import TaskCard from './task_card';
-import Dragula from 'react-dragula';
 import { connect } from 'react-redux';
+import reorder from '../../common/reorder';
+import TaskCard from './task_card';
 import { updateTaskPosition } from '../../actions/tasks';
 
 class TaskList extends Component {
   componentDidMount() {
-    const dragula = Dragula([ReactDom.findDOMNode(this)]);
-
-    dragula.on('drop', (el, target, source, sibling) => {
-      const pos = sibling ? parseInt(sibling.dataset.pos) : target.childNodes.length;
-      this.props.updateTaskPosition(el.dataset.path, pos);
-      target.childNodes.forEach((el, i) => { el.dataset.pos = i; });
-    });
+    this.reorder = reorder.bind(this);
+    this.reorder(this.props.updateTaskPosition, 'js-drag-task')
   }
 
   taskList(column) {
@@ -29,7 +23,6 @@ class TaskList extends Component {
       ))
     );
   }
-
 
   render() {
     return (

@@ -21,7 +21,6 @@ export function updateTaskPosition(path, position) {
   return (dispatch) => {
     putWithParams(Config.apiUrl + path, { task: { sequence_position: position } })
       .catch((error) => {
-        console.log(['errr', error]);
         error.text().then(msg => dispatchSetError(dispatch, JSON.parse(msg)));
       });
   };
