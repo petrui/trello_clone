@@ -14,7 +14,10 @@
 # Ignore all logfiles, tempfiles and node modules.
 /log/*
 /tmp/*
-/node_modules/
-/app-js/dist/
 .byebug_history
 .tags
+
+# JS
+/node_modules/
+/app-react/node_modules/
+/app-react/dist/

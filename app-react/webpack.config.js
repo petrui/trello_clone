@@ -3,12 +3,12 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  context: path.resolve(__dirname, 'app-js'),
+  context: path.resolve(__dirname),
   entry: ['./js/main-app.js', './css/main.scss'],
 
   output: {
     filename: './bundle.js',
-    path: path.resolve(__dirname, 'app-js', 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist',
   },
 
@@ -45,7 +45,7 @@ module.exports = {
   devServer: {
     clientLogLevel: 'none',
     compress: true,
-    contentBase: path.resolve(__dirname, 'app-js'),
+    contentBase: path.resolve(__dirname),
     historyApiFallback: true,
     hot: true,
     port: 3001,
