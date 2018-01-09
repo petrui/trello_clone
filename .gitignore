@@ -21,3 +21,5 @@
 /node_modules/
 /app-react/node_modules/
 /app-react/dist/
+/app-angular/node_modules/
+/app-angular/dist/
